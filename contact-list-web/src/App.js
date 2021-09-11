@@ -1,12 +1,11 @@
 import './App.css';
+import ListContactComponent from './components/ListContactComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Contact List App</h1>
-      </header>
-    </div>
+      <div className="container">
+          <ListContactComponent />
+      </div>
   );
 }
 
