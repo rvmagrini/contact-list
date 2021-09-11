@@ -7,7 +7,7 @@
 
 ### STORY 1: [LIST CONTACTS] FUNCTIONALITY
 TASKS:
-- [1.1] Create Spring Boot project
+- [1.1] Create Spring Boot project and Configure PostgreSQL
 - [1.2] Create JPA Entity + Repository
 - [1.3] Create Contact List REST API
 - [1.4] Create React App
