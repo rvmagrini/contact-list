@@ -18,9 +18,8 @@ class ListContactComponent extends Component {
 
     render() {
         return (
-            <div>
-
-                <h2 className="text-center">Contacts List</h2>
+            <div className="main">
+                <h2 className="text-center">Contact List</h2>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
