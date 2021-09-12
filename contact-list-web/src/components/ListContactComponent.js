@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContactService from '../services/ContactService';
 
 class ListContactComponent extends Component {
     constructor(props) {
@@ -9,7 +10,11 @@ class ListContactComponent extends Component {
         }
     }
 
-
+    componentDidMount() {
+        ContactService.getContacts().then((res) => {
+            this.setState({ contacts: res.data });
+        });
+    }
 
     render() {
         return (
