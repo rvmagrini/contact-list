@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,19 @@ public class ContactController {
 		Contact contact = contactRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Contact with id " + id + "does not exist."));
 		return ResponseEntity.ok(contact);
+	}
+	
+	// Update Contact REST API
+	@PutMapping("/contacts/{id}")
+	public ResponseEntity<Contact> updateContact(@PathVariable Long id, @RequestBody Contact contactDetails) {
+		Contact contact = contactRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Contact with id " + id + "does not exist."));
+		contact.setFirstName(contactDetails.getFirstName());
+		contact.setLastName(contactDetails.getLastName());
+		contact.setEmail(contactDetails.getEmail());
+		
+		Contact updateContact = contactRepository.save(contact);
+		return ResponseEntity.ok(updateContact);
 	}
 	
 	
