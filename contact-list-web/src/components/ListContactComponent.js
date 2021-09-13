@@ -8,6 +8,7 @@ class ListContactComponent extends Component {
         this.state = {
             contacts: []
         }
+        this.addContact = this.addContact.bind(this);
     }
 
     componentDidMount() {
@@ -16,10 +17,18 @@ class ListContactComponent extends Component {
         });
     }
 
+    addContact() {
+        this.props.history.push('/add-contact');
+    }
+
     render() {
         return (
             <div className="main">
                 <h2 className="text-center">Contact List</h2>
+                <div className="row">
+                    <button className="btn btn-success" onClick={this.addContact}>ADD CONTACT</button>
+                </div>
+
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
@@ -42,14 +51,6 @@ class ListContactComponent extends Component {
                                 )
                             }
 
-
-
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
                         </tbody>
                     </table>
 

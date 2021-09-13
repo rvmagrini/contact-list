@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import ListContactComponent from './components/ListContactComponent';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AddContactComponent from './components/AddContactComponent';
 
 function App() {
   return (
@@ -11,10 +12,10 @@ function App() {
             <Header />
 
             <div className="container">
-              <Switch> http://localhost:3000/contacts
-                <Route path = "/" component = {ListContactComponent}></Route>
+              <Switch>
+                <Route path = "/" exact component = {ListContactComponent}></Route>
                 <Route path = "/contacts" component = {ListContactComponent}></Route>
-                <ListContactComponent />
+                <Route path = "/add-contact" component = {AddContactComponent}></Route>
               </Switch>
             </div>
             
