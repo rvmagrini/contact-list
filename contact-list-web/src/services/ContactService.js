@@ -8,6 +8,10 @@ class ContactService {
         return axios.get(CONTACT_API_BASE_URL);
     }
 
+    addContact(contact) {
+        return axios.post(CONTACT_API_BASE_URL, contact);
+    }
+
 }
 
 export default new ContactService()

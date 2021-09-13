@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContactService from '../services/ContactService';
 
 class AddContactComponent extends Component {
         
@@ -39,6 +40,11 @@ class AddContactComponent extends Component {
             email: this.state.email
         };
         console.log('contact = ' + JSON.stringify(contact));
+        ContactService.addContact(contact).then(res => {
+            this.props.history.push('/contacts');
+        })
+
+
     }
 
     cancel() {
