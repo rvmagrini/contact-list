@@ -15,7 +15,7 @@ function App() {
               <Switch>
                 <Route path = "/" exact component = {ListContactComponent}></Route>
                 <Route path = "/contacts" component = {ListContactComponent}></Route>
-                <Route path = "/add-contact" component = {AddContactComponent}></Route>
+                <Route path = "/add-contact/:id" component = {AddContactComponent}></Route>
               </Switch>
             </div>
             

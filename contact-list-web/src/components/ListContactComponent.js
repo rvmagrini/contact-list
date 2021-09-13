@@ -8,7 +8,13 @@ class ListContactComponent extends Component {
         this.state = {
             contacts: []
         }
+
         this.addContact = this.addContact.bind(this);
+        this.editContact = this.editContact.bind(this);
+    }
+
+    editContact(id) {
+        this.props.history.push(`/add-contact/${id}`);
     }
 
     componentDidMount() {
@@ -18,7 +24,7 @@ class ListContactComponent extends Component {
     }
 
     addContact() {
-        this.props.history.push('/add-contact');
+        this.props.history.push('/add-contact/new');
     }
 
     render() {
@@ -26,7 +32,7 @@ class ListContactComponent extends Component {
             <div className="main">
                 <h2 className="text-center">Contact List</h2>
                 <div className="row">
-                    <button className="btn btn-success" onClick={this.addContact}>ADD CONTACT</button>
+                    <button className="btn btn-success btn-add" onClick={this.addContact}>ADD CONTACT</button>
                 </div>
 
                 <div className="row">
@@ -47,6 +53,7 @@ class ListContactComponent extends Component {
                                         <td> {contact.firstName} </td>
                                         <td> {contact.lastName} </td>
                                         <td> {contact.email} </td>
+                                        <td> <button className="btn btn-primary" onClick={()=> this.editContact(contact.id)}>UPDATE</button> </td>
                                     </tr>
                                 )
                             }

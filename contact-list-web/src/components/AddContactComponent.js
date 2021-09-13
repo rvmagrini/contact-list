@@ -7,6 +7,7 @@ class AddContactComponent extends Component {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
             firstName: '',
             lastName: '',
             email: ''
@@ -16,8 +17,26 @@ class AddContactComponent extends Component {
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        this.addContact = this.addContact.bind(this);
+        this.saveOrUpdateContact = this.saveOrUpdateContact.bind(this);
+    }
 
+    componentDidMount() {
+
+        if (this.state.id === 'new') {
+            document.querySelector(".first-field").focus();
+            return;
+        } else {
+            ContactService.getContactById(this.state.id).then(res=> {
+                let contact = res.data;
+                this.setState({
+                    firstName: contact.firstName,
+                    lastName: contact.lastName,
+                    email: contact.email
+                });
+            });
+            document.querySelector(".first-field").focus();
+        }
+        
     }
 
     changeFirstNameHandler = (event) => {
@@ -32,7 +51,7 @@ class AddContactComponent extends Component {
         this.setState({email: event.target.value})
     }
 
-    addContact = (e) => {
+    saveOrUpdateContact = (e) => {
         e.preventDefault();
         let contact = {
             firstName: this.state.firstName,
@@ -40,22 +59,29 @@ class AddContactComponent extends Component {
             email: this.state.email
         };
         console.log('contact = ' + JSON.stringify(contact));
-        ContactService.addContact(contact).then(res => {
-            this.props.history.push('/contacts');
-        })
 
+        if (this.state.id === 'new') {
+            // add
+            ContactService.saveContact(contact).then(res => {
+                this.props.history.push('/contacts');
+            });      
+        } else {
+            // update
+            ContactService.updateContact(contact, this.state.id).then(res => {
+            this.props.history.push('/contacts');
+            });
+        }
 
     }
 
     cancel() {
         this.props.history.push('/contacts');
-
     }
     
     render() {
         return (
             <div className="main">
-                <h2 className="text-center">Add Contact</h2>
+                <h2 className="text-center">{ this.state.id === 'new' ? 'Add' : 'Update' } Contact</h2>
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
@@ -63,7 +89,7 @@ class AddContactComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>First Name: </label>
-                                        <input placeholder="First Name" name="firstName" className="form-control" value={this.state.firstName} onChange={this.changeFirstNameHandler} />
+                                        <input placeholder="First Name" name="firstName" className="form-control first-field" value={this.state.firstName} onChange={this.changeFirstNameHandler} />
                                     </div>
                                     <div className="form-group">
                                         <label>Last Name: </label>
@@ -74,7 +100,7 @@ class AddContactComponent extends Component {
                                         <input placeholder="Email" name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.addContact}>Save</button>
+                                    <button className="btn btn-success" onClick={this.saveOrUpdateContact}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
 
                                 </form>

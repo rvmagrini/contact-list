@@ -8,8 +8,16 @@ class ContactService {
         return axios.get(CONTACT_API_BASE_URL);
     }
 
-    addContact(contact) {
+    saveContact(contact) {
         return axios.post(CONTACT_API_BASE_URL, contact);
+    }
+
+    getContactById(contactId) {
+        return axios.get(CONTACT_API_BASE_URL + '/' + contactId);
+    }
+
+    updateContact(contact, contactId) {
+        return axios.put(CONTACT_API_BASE_URL + '/' + contactId, contact);
     }
 
 }
