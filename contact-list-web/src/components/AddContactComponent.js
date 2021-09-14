@@ -102,7 +102,7 @@ class AddContactComponent extends Component {
 
                                     <div className="d-flex justify-content-between">
                                     <button className="btn btn-success" onClick={this.saveOrUpdateContact}>Save</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)}>Cancel</button>
                                     </div>
 
                                 </form>
