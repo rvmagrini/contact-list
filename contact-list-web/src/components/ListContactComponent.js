@@ -13,6 +13,7 @@ class ListContactComponent extends Component {
         this.addContact = this.addContact.bind(this);
         this.editContact = this.editContact.bind(this);
         this.deleteContact = this.deleteContact.bind(this);
+        this.viewContact = this.viewContact.bind(this);
     }
 
     addContact() {
@@ -27,6 +28,10 @@ class ListContactComponent extends Component {
         ContactService.deleteContact(id).then( res=> {
             this.setState( {contacts: this.state.contacts.filter(contact => contact.id !== id)});
         });
+    }
+
+    viewContact(id) {
+        this.props.history.push(`/view-contact/${id}`);
     }
 
     componentDidMount() {
@@ -62,8 +67,9 @@ class ListContactComponent extends Component {
                                         <td> {contact.lastName} </td>
                                         <td> {contact.email} </td>
                                         <td className="d-flex justify-content-between"> 
+                                            <button className="btn btn-primary btn-action" onClick={ ()=> this.viewContact(contact.id) }>VIEW</button> 
                                             <button className="btn btn-info btn-action" onClick={ ()=> this.editContact(contact.id) }>UPDATE</button>
-                                            <button className="btn btn-danger btn-action" onClick={ ()=> this.deleteContact(contact.id) }>DELETE</button> 
+                                            <button className="btn btn-danger btn-action" onClick={ ()=> this.deleteContact(contact.id) }>DELETE</button>
                                         </td>
                                     </tr>
                                 )

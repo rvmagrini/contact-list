@@ -38,4 +38,9 @@ TASKS:
 TASKS:
 - [4.1] Create Delete Contact REST API
 - [4.2] Connect React with Delete Contact REST API
-- [4.3] Demo
+
+
+### STORY 5: [VIEW CONTACT] FUNCTIONALITY
+TASKS:
+
+- [5.1] Create and route React View Contact Component
