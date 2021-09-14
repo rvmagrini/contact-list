@@ -100,8 +100,10 @@ class AddContactComponent extends Component {
                                         <input placeholder="Email" name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
                                     </div>
 
+                                    <div className="d-flex justify-content-between">
                                     <button className="btn btn-success" onClick={this.saveOrUpdateContact}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                    </div>
 
                                 </form>
 

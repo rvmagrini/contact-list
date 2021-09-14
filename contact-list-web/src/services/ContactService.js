@@ -20,6 +20,10 @@ class ContactService {
         return axios.put(CONTACT_API_BASE_URL + '/' + contactId, contact);
     }
 
+    deleteContact(contactId) {
+        return axios.delete(CONTACT_API_BASE_URL + '/' + contactId);
+    }
+
 }
 
 export default new ContactService()
