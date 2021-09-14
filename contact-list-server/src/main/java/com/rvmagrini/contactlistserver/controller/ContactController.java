@@ -57,6 +57,8 @@ public class ContactController {
 		contact.setFirstName(contactDetails.getFirstName());
 		contact.setLastName(contactDetails.getLastName());
 		contact.setEmail(contactDetails.getEmail());
+		contact.setLabel(contactDetails.getLabel());
+		contact.setNotes(contactDetails.getNotes());
 
 		Contact updateContact = contactRepository.save(contact);
 		return ResponseEntity.ok(updateContact);

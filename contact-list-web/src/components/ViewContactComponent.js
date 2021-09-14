@@ -44,11 +44,15 @@ class ViewContactComponent extends Component {
                         </div>
                         <div className="row d-flex justify-content-between">
                             <label>Email: </label>
-                            <div> { this.state.contact.email}</div>
+                            <div> {this.state.contact.email}</div>
                         </div>
                         <div className="row d-flex justify-content-between">
-                            <label>Details: </label>
-                            <div> .... </div>
+                            <label>Label: </label>
+                            <div> {this.state.contact.label} </div>
+                        </div>
+                        <div className="row d-flex justify-content-between">
+                            <label>Notes: </label>
+                            <div> {this.state.contact.notes} </div>
                         </div>
 
                         <div className="text-center">

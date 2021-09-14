@@ -45,3 +45,4 @@ TASKS:
 
 - [5.1] Create and route React View Contact Component
 - [5.2] Design and populate View Contact Page
+- [5.3] Add Label and Notes fields

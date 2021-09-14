@@ -1,6 +1,5 @@
 package com.rvmagrini.contactlistserver.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,26 +13,25 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	@Column(name = "first_name")
 	private String firstName;
-
-	@Column(name = "last_name")
 	private String lastName;
-
-	@Column(name = "email")
 	private String email;
+	private String label;
+	private String notes;
+	
 
 	// Default constructor
 	public Contact() {
 
 	}
 
-	public Contact(String firstName, String lastName, String email) {
+	public Contact(String firstName, String lastName, String email, String label, String notes) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.label = label;
+		this.notes = notes;
 	}
 
 	public long getId() {
@@ -66,6 +64,22 @@ public class Contact {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 }

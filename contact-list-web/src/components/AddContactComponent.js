@@ -10,13 +10,17 @@ class AddContactComponent extends Component {
             id: this.props.match.params.id,
             firstName: '',
             lastName: '',
-            email: ''
+            email: '',
+            label: '',
+            notes: ''
         }
 
         // Binding form handler
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
+        this.changeLabelHandler = this.changeLabelHandler.bind(this);
+        this.changeNotesHandler = this.changeNotesHandler.bind(this);
         this.saveOrUpdateContact = this.saveOrUpdateContact.bind(this);
     }
 
@@ -31,7 +35,9 @@ class AddContactComponent extends Component {
                 this.setState({
                     firstName: contact.firstName,
                     lastName: contact.lastName,
-                    email: contact.email
+                    email: contact.email,
+                    label: contact.label,
+                    notes: contact.notes
                 });
             });
             document.querySelector(".first-field").focus();
@@ -40,15 +46,23 @@ class AddContactComponent extends Component {
     }
 
     changeFirstNameHandler = (event) => {
-        this.setState({firstName: event.target.value})
+        this.setState({firstName: event.target.value});
     }
 
     changeLastNameHandler = (event) => {
-        this.setState({lastName: event.target.value})
+        this.setState({lastName: event.target.value});
     }
 
     changeEmailHandler = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({email: event.target.value});
+    }
+
+    changeLabelHandler = (event) => {
+        this.setState({label: event.target.value});
+    }
+
+    changeNotesHandler = (event) => {
+        this.setState({notes: event.target.value});
     }
 
     saveOrUpdateContact = (e) => {
@@ -56,7 +70,9 @@ class AddContactComponent extends Component {
         let contact = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            email: this.state.email
+            email: this.state.email,
+            label: this.state.label,
+            notes: this.state.notes
         };
         console.log('contact = ' + JSON.stringify(contact));
 
@@ -98,6 +114,14 @@ class AddContactComponent extends Component {
                                     <div className="form-group">
                                         <label>Email: </label>
                                         <input placeholder="Email" name="email" className="form-control" value={this.state.email} onChange={this.changeEmailHandler} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Label: </label>
+                                        <input placeholder="Label" name="label" className="form-control" value={this.state.label} onChange={this.changeLabelHandler} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Notes: </label>
+                                        <input placeholder="Notes" name="notes" className="form-control" value={this.state.notes} onChange={this.changeNotesHandler} />
                                     </div>
 
                                     <div className="d-flex justify-content-between">
