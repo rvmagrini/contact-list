@@ -26,7 +26,12 @@ class ListContactComponent extends Component {
 
     deleteContact(id) {
         ContactService.deleteContact(id).then( res=> {
+            console.log(res.data);
+            if (res.data) {
             this.setState( {contacts: this.state.contacts.filter(contact => contact.id !== id)});
+            } else {
+                console.log("Contact not found.")
+            }
         });
     }
 

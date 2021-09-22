@@ -79,12 +79,24 @@ class AddContactComponent extends Component {
         if (this.state.id === 'new') {
             // add
             ContactService.saveContact(contact).then(res => {
-                this.props.history.push('/contacts');
+                if (res.status === 200) {
+                    this.props.history.push('/contacts');
+                } else if (res.status === 404) {
+                    console.log(res.data);
+                } else if (res.status === 500) {
+                    console.log(res.data);
+                }
             });      
         } else {
             // update
             ContactService.updateContact(contact, this.state.id).then(res => {
-            this.props.history.push('/contacts');
+                if (res.status === 202) {
+                    this.props.history.push('/contacts');
+                } else if (res.status === 404) {
+                    console.log(res.data);
+                } else if (res.status === 500) {
+                    console.log(res.data);
+                }
             });
         }
 
